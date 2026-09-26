@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cast Your Vote</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f4f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 420px;
+            margin: 80px auto;
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        .instruction {
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .candidate {
+            display: flex;
+            align-items: center;
+            text-align: left;
+            padding: 15px;
+            margin: 12px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .candidate:hover {
+            background: #f5f7ff;
+        }
+
+        .candidate input {
+            margin-right: 12px;
+            transform: scale(1.2);
+        }
+
+        .candidate label {
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 6px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>🗳️ Cast Your Vote</h1>
+
+        <p class="instruction">
+            Please select one candidate
+        </p>
+
+        <form action="/vote" method="POST">
+
+            <div class="candidate">
+                <input type="radio" id="candidate1"
+                       name="candidate"
+                       value="Candidate A"
+                       required>
+                <label for="candidate1">Candidate A</label>
+            </div>
+
+            <div class="candidate">
+                <input type="radio" id="candidate2"
+                       name="candidate"
+                       value="Candidate B">
+                <label for="candidate2">Candidate B</label>
+            </div>
+
+            <div class="candidate">
+                <input type="radio" id="candidate3"
+                       name="candidate"
+                       value="Candidate C">
+                <label for="candidate3">Candidate C</label>
+            </div>
+
+            <button type="submit">Cast Vote</button>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>

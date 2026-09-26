@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Election Results</title>
+</head>
+
+<body>
+
+    <h1>Election Results</h1>
+
+    {% if results %}
+
+        {% for candidate, vote_count in results %}
+            <p>
+                <strong>{{ candidate }}</strong> :
+                {{ vote_count }} vote(s)
+            </p>
+        {% endfor %}
+
+    {% else %}
+
+        <p>No votes have been cast yet.</p>
+
+    {% endif %}
+
+    <br>
+    <a href="/logout">Logout</a>
+
+</body>
+
+</html>

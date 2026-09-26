@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Vote Successful</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f4f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 420px;
+            margin: 100px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .success {
+            font-size: 55px;
+        }
+
+        h1 {
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: #555;
+            font-size: 17px;
+        }
+
+        .candidate {
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 25px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        a:hover {
+            background: #1d4ed8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="success">✅</div>
+
+        <h1>Vote Submitted Successfully!</h1>
+
+        <p>Your vote has been successfully recorded.</p>
+
+        <p>
+            Selected Candidate:
+            <span class="candidate">{{ candidate }}</span>
+        </p>
+
+        <p>🔒 You can vote only once.</p>
+
+        <a href="/">Return to Home</a>
+
+    </div>
+
+</body>
+
+</html>
