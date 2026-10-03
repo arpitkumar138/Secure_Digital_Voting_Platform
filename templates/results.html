@@ -1,34 +1,275 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Election Results</title>
+
+    <title>Election Results | SecureVote 2.0</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            min-height: 100vh;
+            color: #0f172a;
+        }
+
+        .navbar {
+            background: #0f172a;
+            color: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .admin-badge {
+            background: #1e293b;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 45px auto;
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 34px;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: #64748b;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(15, 23, 42, 0.08);
+        }
+
+        .stat-title {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .stat-value {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .results-card {
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(15, 23, 42, 0.08);
+        }
+
+        .results-card h2 {
+            margin-bottom: 25px;
+        }
+
+        .candidate {
+            margin-bottom: 22px;
+        }
+
+        .candidate-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .bar-container {
+            width: 100%;
+            height: 14px;
+            background: #e2e8f0;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .bar {
+            height: 100%;
+            background: #2563eb;
+            border-radius: 20px;
+            transition: width 0.5s ease;
+        }
+
+        .logout {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 22px;
+            background: #ef4444;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .logout:hover {
+            background: #dc2626;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 35px;
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        @media (max-width: 700px) {
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar {
+                padding: 16px 5%;
+            }
+
+            .container {
+                width: 92%;
+                margin: 30px auto;
+            }
+
+            .header h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <h1>Election Results</h1>
+    <nav class="navbar">
+        <div class="brand">
+            🗳️ SecureVote 2.0
+        </div>
 
-    {% if results %}
+        <div class="admin-badge">
+            Admin Dashboard
+        </div>
+    </nav>
 
-        {% for candidate, vote_count in results %}
-            <p>
-                <strong>{{ candidate }}</strong> :
-                {{ vote_count }} vote(s)
-            </p>
-        {% endfor %}
+    <main class="container">
 
-    {% else %}
+        <div class="header">
+            <h1>Election Results</h1>
+            <p>Live overview of the recorded votes.</p>
+        </div>
 
-        <p>No votes have been cast yet.</p>
+        {% set total_votes = results | sum(attribute=1) %}
 
-    {% endif %}
+        <div class="stats">
 
-    <br>
-    <a href="/logout">Logout</a>
+            <div class="stat-card">
+                <div class="stat-title">
+                    Total Votes
+                </div>
+
+                <div class="stat-value">
+                    {{ total_votes }}
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-title">
+                    Candidates
+                </div>
+
+                <div class="stat-value">
+                    {{ results | length }}
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-title">
+                    System Status
+                </div>
+
+                <div class="stat-value">
+                    Active
+                </div>
+            </div>
+
+        </div>
+
+        <div class="results-card">
+
+            <h2>Candidate-wise Results</h2>
+
+            {% for party, count in results %}
+
+                {% if total_votes > 0 %}
+                    {% set percentage = (count / total_votes * 100) | round(1) %}
+                {% else %}
+                    {% set percentage = 0 %}
+                {% endif %}
+
+                <div class="candidate">
+
+                    <div class="candidate-header">
+
+                        <span>
+                            {{ party }}
+                        </span>
+
+                        <span>
+                            {{ count }} vote(s) — {{ percentage }}%
+                        </span>
+
+                    </div>
+
+                    <div class="bar-container">
+
+                        <div
+                            class="bar"
+                            style="width: {{ percentage }}%;">
+                        </div>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+            <a href="/logout" class="logout">
+                Logout
+            </a>
+
+        </div>
+
+        <div class="footer">
+            SecureVote 2.0 • Digital Voting Platform
+        </div>
+
+    </main>
 
 </body>
-
 </html>
