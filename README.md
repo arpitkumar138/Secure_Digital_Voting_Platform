@@ -1,8 +1,9 @@
-# Secure Digital Voting Platform 2.0
+# Secure Digital Voting Platform
 
 A web-based digital voting system developed using Flask and SQLite. The project demonstrates voter verification, OTP-based authentication, one-vote-per-voter protection, anonymous vote storage, and an admin results dashboard.
 
 > **Note:** This is an educational/demo project and is not intended for real-world government elections.
+
 
 ## Features
 
