@@ -4,7 +4,6 @@ A web-based digital voting system developed using Flask and SQLite. The project 
 
 > **Note:** This is an educational/demo project and is not intended for real-world government elections.
 
-
 ## Features
 
 - Voter ID verification
