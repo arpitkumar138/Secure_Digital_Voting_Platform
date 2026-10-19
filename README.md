@@ -52,6 +52,6 @@ Results Dashboard
 ![Vote Submitted](screenshots/%E2%9C%85%20Vote%20Submitted.png)
 
 ### 5. Results Dashboard
-![Results Dashboard](screenshots/%F0%9F%93%8A%20Results%20Dashboard.png.jpeg)D
+![Results Dashboard](screenshots/%F0%9F%93%8A%20Results%20Dashboard.png.jpeg)
 
 
